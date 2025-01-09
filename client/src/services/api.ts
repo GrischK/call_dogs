@@ -10,5 +10,5 @@ export const appTest = async () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return await response.json();
+    return response;
 };

@@ -4,10 +4,20 @@ import {appTest} from "./services/api.ts";
 
 function App() {
   const [count, setCount] = useState(0)
-  const [data, setData] = useState()
+  const [data, setData] = useState(null)
 
   useEffect(() => {
-    appTest()
+    const fetchData = async () => {
+      try {
+        const response = await appTest();
+        const textData = await response.text();
+        setData(textData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   console.log(data)
@@ -15,8 +25,7 @@ function App() {
   return (
     <>
       <div>
-        HELLO WORLD !
-        BX
+        {data}
       </div>
     </>
   )
