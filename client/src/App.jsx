@@ -1,10 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {useEffect, useState} from 'react'
 import './App.css'
+import {appTest} from "./services/api.ts";
 
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    appTest()
+  }, []);
+
+  console.log(data)
 
   return (
     <>
