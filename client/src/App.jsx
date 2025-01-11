@@ -28,26 +28,10 @@ function App() {
       }
     };
 
-    const addDog = () => {
-      fetch('http://localhost:3000/dogs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: 'New Dog', breed: 'Labrador', age: 2 }),
-      }).then(() => {
-        // Refresh the list
-        fetch('http://localhost:3000/dogs')
-          .then((res) => res.json())
-          .then((data) => setDogs(data));
-      });
-    };
-
     fetchData();
-    addDog()
   }, []);
 
   console.log(data)
-  console.log(dogs)
-
 
   return (
     <>

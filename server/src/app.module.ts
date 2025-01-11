@@ -3,6 +3,7 @@ import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Dog} from "./dogs/dog.entity";
+import {DogsModule} from "./dogs/dogs.module";
 
 @Module({
     imports: [
@@ -17,7 +18,7 @@ import {Dog} from "./dogs/dog.entity";
             synchronize: true,
             logging: true
         }),
-        TypeOrmModule.forFeature([Dog])
+        DogsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
