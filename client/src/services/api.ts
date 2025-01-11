@@ -12,3 +12,18 @@ export const appTest = async () => {
 
     return response;
 };
+
+export const getDogs = async () => {
+    const response = await fetch('http://localhost:3000/dogs', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response;
+};
