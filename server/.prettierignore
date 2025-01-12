@@ -1,0 +1,35 @@
+# Ignore les dossiers de dépendances
+node_modules/
+dist/
+
+# Ignorer les fichiers de configuration générés
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignorer les dossiers de build ou de cache
+.build/
+.cache/
+out/
+coverage/
+
+# Ignorer les fichiers de logs
+*.log
+
+# Ignorer les fichiers de test générés automatiquement
+test/**/*.snap
+
+# Ignorer les fichiers spécifiques
+.env
+.env.local
+.env.*.local
+
+# Ignorer certains types de fichiers
+*.min.js
+*.min.css
+*.bundle.js
+*.bundle.css
+
+# Ignorer les fichiers et dossiers spécifiques à votre projet
+public/
+assets/

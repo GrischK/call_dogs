@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react'
-import './App.css'
-import {appTest, getDogs} from "./services/api.ts";
+import { useEffect, useState } from "react";
+import "./App.css";
+import { appTest, getDogs } from "./services/api.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [data, setData] = useState(null)
-  const [dogs, setDogs] = useState(null)
+  const [count, setCount] = useState(0);
+  const [data, setData] = useState(null);
+  const [dogs, setDogs] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,32 +14,33 @@ function App() {
         const textData = await response.text();
         setData(textData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
     const fetchDogs = async () => {
       try {
         const response = await getDogs();
-        const textData = await response.json();
-        setDogs(textData);
+        const dogsData = await response.json();
+        setDogs(dogsData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
-
+    fetchDogs();
     fetchData();
   }, []);
 
-  console.log(data)
+  console.log(data);
+  console.log(dogs);
 
   return (
     <>
-      <div>
-        {data}
-      </div>
+      <div>{data}</div>
+      <div>HELLO</div>
+      <div>{dogs && dogs.map((dog) => <div>{dog.name}</div>)}</div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
