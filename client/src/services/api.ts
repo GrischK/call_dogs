@@ -25,7 +25,7 @@ export const getDogs = async () => {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
 
-  return response;
+  return response.json();
 };
 
 export const postDog = async (dog) => {

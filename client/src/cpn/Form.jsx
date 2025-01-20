@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { postDog } from "../services/api.ts";
 import { useEffect } from "react";
 
-export default function Form() {
+export default function Form({ updateDogsList }) {
   const {
     register,
     handleSubmit,
@@ -27,6 +27,7 @@ export default function Form() {
     try {
       console.log(cleanData);
       const result = await postDog(cleanData);
+      updateDogsList();
       console.log("Dog created successfully:", result);
     } catch (error) {
       console.error("Error creating dog:", error);
