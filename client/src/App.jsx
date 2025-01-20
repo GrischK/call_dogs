@@ -34,7 +34,7 @@ function App() {
   return (
     <>
       <div>HELLO</div>
-      <div>
+      <div className={"flex gap-4 mb-8"}>
         {dogs &&
           dogs.map((dog) => (
             <div key={dog.id}>

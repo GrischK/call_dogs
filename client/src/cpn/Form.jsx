@@ -40,7 +40,7 @@ export default function Form({ updateDogsList }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
       <input placeholder="name" {...register("name", { required: true })} />
       <input placeholder="age" {...register("age")} />
       <input placeholder="breed" {...register("breed")} />
