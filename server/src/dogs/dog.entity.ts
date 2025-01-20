@@ -18,9 +18,14 @@ export class Dog {
   @Column({ nullable: true })
   breed: string;
 
-  @Column({ default: 0 })
+  @Column({ nullable: true, default: 0 })
   age: number;
 
-  @Column('enum', { enum: Role, array: true, default: [Role.TEAM_DOG] })
+  @Column('enum', {
+    nullable: true,
+    enum: Role,
+    array: true,
+    default: [Role.TEAM_DOG],
+  })
   role: Role[];
 }

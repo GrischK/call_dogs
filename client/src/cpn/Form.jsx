@@ -1,15 +1,39 @@
 import { useForm } from "react-hook-form";
+import { postDog } from "../services/api.ts";
+import { useEffect } from "react";
 
 export default function Form() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  } = useForm({
+    defaultValues: {
+      name: null,
+      age: null,
+      breed: null,
+      role: null,
+    },
+  });
 
-  console.log(watch("name"));
+  const onSubmit = async (data) => {
+    const cleanData = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key,
+        value === "" ? null : value,
+      ]),
+    );
+
+    try {
+      console.log(cleanData);
+      const result = await postDog(cleanData);
+      console.log("Dog created successfully:", result);
+    } catch (error) {
+      console.error("Error creating dog:", error);
+    }
+  };
+
+  useEffect(() => {}, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

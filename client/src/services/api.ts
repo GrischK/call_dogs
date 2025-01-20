@@ -27,3 +27,20 @@ export const getDogs = async () => {
 
   return response;
 };
+
+export const postDog = async (dog) => {
+  console.log(dog);
+  const response = await fetch("http://localhost:3000/dogs", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dog),
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  return response.json();
+};

@@ -4,7 +4,6 @@ import { appTest, getDogs } from "./services/api.ts";
 import Form from "./cpn/Form.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [data, setData] = useState(null);
   const [dogs, setDogs] = useState(null);
 
@@ -39,7 +38,7 @@ function App() {
     <>
       <div>{data}</div>
       <div>HELLO</div>
-      <div>{dogs && dogs.map((dog) => <div>{dog.name}</div>)}</div>
+      <div>{dogs && dogs.map((dog) => <div key={dog.id}>{dog.name}</div>)}</div>
       <Form />
     </>
   );

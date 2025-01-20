@@ -1,14 +1,17 @@
 import {
-  Controller,
-  Get,
-  Post,
+  BadRequestException,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
   Put,
 } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { Dog } from './dog.entity';
+
+//TODO : Ajouter un class validator
 
 @Controller('dogs')
 export class DogsController {
@@ -26,6 +29,9 @@ export class DogsController {
 
   @Post()
   createDog(@Body() dog: Partial<Dog>): Promise<Dog> {
+    if (!dog.name) {
+      throw new BadRequestException('Name is required');
+    }
     return this.dogsService.create(dog);
   }
 
