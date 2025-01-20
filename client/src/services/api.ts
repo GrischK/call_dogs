@@ -44,3 +44,18 @@ export const postDog = async (dog) => {
 
   return response.json();
 };
+
+export const deleteDog = async (dogId) => {
+  const response = await fetch(`http://localhost:3000/dogs/${dogId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  return response;
+};

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getDogs } from "./services/api.ts";
+import { deleteDog, getDogs } from "./services/api.ts";
 import Form from "./cpn/Form.jsx";
 
 function App() {
   const [dogs, setDogs] = useState(null);
-  const [isNewDog, setIsNewDog] = useState(false);
+  const [refreshDogsList, setRefreshDogsList] = useState(false);
 
   useEffect(() => {
     const fetchDogs = async () => {
@@ -17,16 +17,31 @@ function App() {
       }
     };
     fetchDogs();
-    setIsNewDog(false);
-  }, [isNewDog]);
+    setRefreshDogsList(false);
+  }, [refreshDogsList]);
 
-  console.log(dogs);
+  const handleDeleteDog = async (id) => {
+    try {
+      await deleteDog(id);
+      setRefreshDogsList(true);
+    } catch (error) {
+      console.error("Error deleting dog:", error);
+    }
+  };
 
   return (
     <>
       <div>HELLO</div>
-      <div>{dogs && dogs.map((dog) => <div key={dog.id}>{dog.name}</div>)}</div>
-      <Form updateDogsList={() => setIsNewDog(true)} />
+      <div>
+        {dogs &&
+          dogs.map((dog) => (
+            <div key={dog.id}>
+              <span>{dog.name}</span>
+              <button onClick={() => handleDeleteDog(dog.id)}>x</button>
+            </div>
+          ))}
+      </div>
+      <Form updateDogsList={() => setRefreshDogsList(true)} />
     </>
   );
 }
