@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { appTest, getDogs } from "./services/api.ts";
+import Form from "./cpn/Form.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -39,6 +40,7 @@ function App() {
       <div>{data}</div>
       <div>HELLO</div>
       <div>{dogs && dogs.map((dog) => <div>{dog.name}</div>)}</div>
+      <Form />
     </>
   );
 }
