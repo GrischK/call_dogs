@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { postDog } from "../services/api.ts";
-import { useEffect } from "react";
 
 export default function Form({ updateDogsList }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -25,16 +25,19 @@ export default function Form({ updateDogsList }) {
     );
 
     try {
-      console.log(cleanData);
       const result = await postDog(cleanData);
+      reset({
+        name: null,
+        age: null,
+        breed: null,
+        role: null,
+      });
       updateDogsList();
       console.log("Dog created successfully:", result);
     } catch (error) {
       console.error("Error creating dog:", error);
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
