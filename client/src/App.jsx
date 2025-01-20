@@ -5,7 +5,6 @@ import Form from "./cpn/Form.jsx";
 
 function App() {
   const [dogs, setDogs] = useState(null);
-  const [refreshDogsList, setRefreshDogsList] = useState(false);
 
   useEffect(() => {
     const fetchDogs = async () => {
@@ -17,13 +16,16 @@ function App() {
       }
     };
     fetchDogs();
-    setRefreshDogsList(false);
-  }, [refreshDogsList]);
+  }, []);
+
+  const handleAddDog = (newDog) => {
+    setDogs((prevDogs) => [...prevDogs, newDog]);
+  };
 
   const handleDeleteDog = async (id) => {
     try {
       await deleteDog(id);
-      setRefreshDogsList(true);
+      setDogs((prevDogs) => prevDogs.filter((dog) => dog.id !== id));
     } catch (error) {
       console.error("Error deleting dog:", error);
     }
@@ -41,7 +43,7 @@ function App() {
             </div>
           ))}
       </div>
-      <Form updateDogsList={() => setRefreshDogsList(true)} />
+      <Form updateDogsList={handleAddDog} />
     </>
   );
 }

@@ -32,7 +32,7 @@ export default function Form({ updateDogsList }) {
         breed: null,
         role: null,
       });
-      updateDogsList();
+      updateDogsList(result);
       console.log("Dog created successfully:", result);
     } catch (error) {
       console.error("Error creating dog:", error);
