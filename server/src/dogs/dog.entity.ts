@@ -29,3 +29,5 @@ export class Dog {
   })
   role: Role[];
 }
+
+export const rolesList = Object.values(Role);

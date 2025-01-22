@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { postDog } from "../services/api.ts";
 
 export default function Form({ updateDogsList }) {
+  const rolesList = ["leader", "wheeler", "swing dog", "team dog"];
+
   const {
     register,
     handleSubmit,
@@ -17,12 +19,10 @@ export default function Form({ updateDogsList }) {
   });
 
   const onSubmit = async (data) => {
-    const cleanData = Object.fromEntries(
-      Object.entries(data).map(([key, value]) => [
-        key,
-        value === "" ? null : value,
-      ]),
-    );
+    const cleanData = {
+      ...data,
+      role: data.role ? [data.role] : [],
+    };
 
     try {
       const result = await postDog(cleanData);
@@ -41,10 +41,21 @@ export default function Form({ updateDogsList }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
-      <input placeholder="name" {...register("name", { required: true })} />
+      <input
+        className={"bg-amber-50"}
+        placeholder="name"
+        {...register("name", { required: true })}
+      />
       <input placeholder="age" {...register("age")} />
       <input placeholder="breed" {...register("breed")} />
-      <input placeholder="role" {...register("role")} />
+      <select {...register("role")} multiple={true}>
+        <option value="">Select a role</option>
+        {rolesList.map((role) => (
+          <option key={role} value={role}>
+            {role}
+          </option>
+        ))}
+      </select>
       {errors.name && <span>TName is required</span>}
       <input type="submit" />
     </form>

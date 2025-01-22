@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { deleteDog, getDogs } from "./services/api.ts";
 import Form from "./cpn/Form.jsx";
+import Card from "./cpn/Card/Card.tsx";
 
 function App() {
   const [dogs, setDogs] = useState(null);
-
   useEffect(() => {
     const fetchDogs = async () => {
       try {
@@ -39,8 +39,20 @@ function App() {
           dogs.map((dog) => (
             <div key={dog.id}>
               <span>{dog.name}</span>
+              <span>{dog.role}</span>
               <button onClick={() => handleDeleteDog(dog.id)}>x</button>
             </div>
+          ))}
+      </div>
+      <div className={"flex gap-4 mb-8"}>
+        {dogs &&
+          dogs.map((dog) => (
+            <Card
+              key={dog.id}
+              name={dog.name}
+              role={dog.role}
+              onButtonClick={() => handleDeleteDog(dog.id)}
+            />
           ))}
       </div>
       <Form updateDogsList={handleAddDog} />
