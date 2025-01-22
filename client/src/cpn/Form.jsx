@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { postDog } from "../services/api.ts";
+import { useEffect } from "react";
 
 export default function Form({ updateDogsList }) {
   const rolesList = ["leader", "wheeler", "swing dog", "team dog"];
@@ -9,20 +10,27 @@ export default function Form({ updateDogsList }) {
     handleSubmit,
     reset,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       name: null,
       age: null,
       breed: null,
-      role: null,
+      role: [],
     },
   });
+
+  useEffect(() => {
+    console.log("Selected roles:", watch("role"));
+  }, [watch("role")]);
 
   const onSubmit = async (data) => {
     const cleanData = {
       ...data,
-      role: data.role ? [data.role] : [],
+      role: data.role ? data.role : [], // Ensure roles are sent as an array
     };
+
+    console.log("Clean data on submit:", cleanData);
 
     try {
       const result = await postDog(cleanData);
@@ -30,7 +38,7 @@ export default function Form({ updateDogsList }) {
         name: null,
         age: null,
         breed: null,
-        role: null,
+        role: [],
       });
       updateDogsList(result);
       console.log("Dog created successfully:", result);
@@ -48,15 +56,18 @@ export default function Form({ updateDogsList }) {
       />
       <input placeholder="age" {...register("age")} />
       <input placeholder="breed" {...register("breed")} />
+
+      {/* Multiple select for roles */}
       <select {...register("role")} multiple={true}>
-        <option value="">Select a role</option>
+        <option value="">Select roles</option>
         {rolesList.map((role) => (
           <option key={role} value={role}>
             {role}
           </option>
         ))}
       </select>
-      {errors.name && <span>TName is required</span>}
+
+      {errors.name && <span>Name is required</span>}
       <input type="submit" />
     </form>
   );
