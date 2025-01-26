@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      <div>HELLO</div>
+      <div>CALL DOGS</div>
       <div className={"flex gap-4 mb-8"}>
         {dogs &&
           dogs.map((dog) => (
@@ -51,6 +51,7 @@ function App() {
               key={dog.id}
               name={dog.name}
               role={dog.role}
+              age={dog.age}
               onButtonClick={() => handleDeleteDog(dog.id)}
             />
           ))}
