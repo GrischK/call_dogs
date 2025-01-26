@@ -48,17 +48,32 @@ export default function Form({ updateDogsList }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-3"}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={"flex flex-col gap-3 w-1/2"}
+    >
       <input
-        className={"bg-amber-50"}
+        className={"border-2 rounded p-1"}
         placeholder="name"
         {...register("name", { required: true })}
       />
-      <input placeholder="age" {...register("age")} />
-      <input placeholder="breed" {...register("breed")} />
+      <input
+        className={"border-2 rounded p-1"}
+        placeholder="age"
+        {...register("age")}
+      />
+      <input
+        className={"border-2 rounded p-1"}
+        placeholder="breed"
+        {...register("breed")}
+      />
 
       {/* Multiple select for roles */}
-      <select {...register("role")} multiple={true}>
+      <select
+        className={"border-2 rounded p-1"}
+        {...register("role")}
+        multiple={true}
+      >
         <option value="">Select roles</option>
         {rolesList.map((role) => (
           <option key={role} value={role}>
@@ -68,7 +83,7 @@ export default function Form({ updateDogsList }) {
       </select>
 
       {errors.name && <span>Name is required</span>}
-      <input type="submit" />
+      <input className={"bg-blue-600 text-white rounded p-1"} type="submit" />
     </form>
   );
 }
