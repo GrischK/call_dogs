@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Dog } from './dogs/dog.entity';
 import { DogsModule } from './dogs/dogs.module';
+import { MinioClientModule } from './minio-client/minio-client.module';
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { DogsModule } from './dogs/dogs.module';
       logging: true,
     }),
     DogsModule,
+    MinioClientModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
