@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Card({ name, role, age, onButtonClick }) {
-  console.log(role);
+  // console.log(role);
   return (
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto text-center relative border">
       <h2 className="text-xl text-gray-900 font-semibold mb-2">{name}</h2>

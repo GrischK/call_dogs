@@ -1,46 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+:root {
+  --blue-rgb: 237 245 255;
+  --green-rgb: 125 161 35;
+  --color-primary: #2C4C64;       /* Bleu foncé (sidebar, texte fort) */
+  --color-secondary: #A5C1D1;     /* Bleu clair (cartes infos) */
+  --color-accent: #F4A261;        /* Orange doux (icônes alertes) */
+  --color-background: #FDF7EF;    /* Beige neige (fond général) */
+  --color-card: #FFF8F2;          /* Beige légèrement plus foncé (cartes) */
+  --color-text-dark: #2F2F2F;     /* Texte sombre (titres) */
+  --color-text-light: #5C5C5C;    /* Texte plus doux */
+  --color-alert: #F05B4E;         /* Rouge alerte */
+  --color-weather: #CDDDE6;       /* Gris bleu pour météo */
+  --color-snow: #EAF0F4;          /* Fond de carte météo ou illustration neige */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+body:has(.card[data-color="blue"]:hover) {
+  background-color: rgb(var(--blue-rgb) / 25%);
+}
+
+body:has(.card[data-color="green"]:hover) {
+  background-color: rgb(var(--green-rgb) / 25%);
+}
+
+@layer utilities {
+  .max-container {
+    @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-8 min-h-[calc(100vh-80px)];
   }
-  to {
-    transform: rotate(360deg);
+
+  .head-text {
+    @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
+  }
+
+  .subhead-text {
+    @apply font-semibold sm:text-3xl text-xl relative font-poppins;
+  }
+
+  .blue-gradient_text {
+    @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
+  }
+
+  .btn {
+    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+  }
+
+  .header {
+    @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
+  }
+
+  .footer {
+    @apply max-w-5xl mx-auto sm:px-16 pb-6 px-8 flex flex-col gap-7;
+  }
+
+  .footer-container {
+    @apply flex flex-wrap gap-7 items-center justify-between;
+  }
+
+  .info-box {
+    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-green pt-4 pb-12 px-8;
+  }
+
+  .neo-btn {
+    @apply py-3 px-6 rounded-lg text-green-900 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+  }
+
+  .cta {
+    @apply w-full flex items-center md:flex-row flex-col sm:mt-16 mt-8 gap-7;
+  }
+
+  .cta-text {
+    @apply text-black-500 font-extrabold flex-1 text-3xl max-md:text-center;
+  }
+
+  .card {
+    @apply rounded-lg;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Neo Brutalism */
+.neo-brutalism-blue {
+  background: #2b77e7;
+  position: relative;
+  border-radius: 10px;
+  border: #2b77e7;
+  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
+  0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
 }
 
-.card {
-  padding: 2em;
+.neo-brutalism-green {
+  background: #368122;
+  position: relative;
+  border-radius: 10px;
+  border: #368122;
+  box-shadow: 0.6vmin 0.6vmin #1d3b16;
 }
 
-.read-the-docs {
-  color: #888;
+.neo-brutalism-white {
+  background: #fff;
+  border: #fff;
+  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
+  0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
 }
