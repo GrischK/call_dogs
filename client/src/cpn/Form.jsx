@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { postDog } from "../services/api.ts";
+import { postDog } from "../services/api.js";
 import { useEffect } from "react";
 
 export default function Form({ updateDogsList }) {
