@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import DogPaw from "../../assets/dog_paw.svg?react";
 import Dogs from "../../assets/dogs.svg?react";
 import Alert from "../../assets/alert.svg?react";
+import Clock from "../../assets/clock.svg?react";
 
 const SideBar = () => {
   return (
@@ -42,7 +43,7 @@ const SideBar = () => {
         }
       >
         <div className={"w-[20px] h-[20px] text-white"}>
-          <Dogs />
+          <Clock />
         </div>
         planning
       </NavLink>
