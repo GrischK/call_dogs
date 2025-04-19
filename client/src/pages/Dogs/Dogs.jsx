@@ -36,11 +36,11 @@ function Dogs() {
   console.log(dogs);
 
   return (
-    <div className={"w-full h-full min-h-[100vh] flex"}>
+    <div className={"w-full h-full min-h-[100vh] flex overflow-hidden"}>
       <Sidebar />
       <div className={"bg-background flex-1 p-6 flex flex-col"}>
         <div>CALL DOGS</div>
-        <div className={"flex gap-4 mb-8"}>
+        <div className={"flex flex-col gap-4 mb-8 flex-wrap justify-start"}>
           {dogs &&
             dogs.map((dog) => (
               <Card
