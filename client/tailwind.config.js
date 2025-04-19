@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         primary: "#2C4C64", // Bleu foncé (sidebar, texte fort)
+        primaryAccent: "#243F52", // Bleu foncé plus prononcé
         secondary: "#A5C1D1", // Bleu clair (cartes infos)
         accent: "#F4A261", // Orange doux (icônes alertes)
         alertCard: "#FFF3EB", // Carte alerte
